@@ -5,44 +5,46 @@
  */
 var arrview = []; 
 
-      var onBtn = Ti.UI.createButton({
+        var onBtn = Ti.UI.createButton({
 	        width : '75dp',
 	        height : '28dp',
-	        id : 1,
-	        backgroundImage : './images/on.png',
-	        value: (Ti.App.Properties.getBool('on')===false) ? false : true,
+	        backgroundImage : './images/on.png'
 	    });
-	    var offBtn = Ti.UI.createButton({
+	var offBtn = Ti.UI.createButton({
 	        width : '75dp',
 	        height : '28dp',
-	        id : 2,
 	        backgroundImage : './images/off.png',
-	        value: (Ti.App.Properties.getBool('on')===false) ? false : true,
 	    });
+	    
 	    arrview.push(onBtn);
 	    arrview.push(offBtn);
 	    
-	    var switchView = Ti.UI.createScrollableView({
+var switchView = Ti.UI.createScrollableView({
 	        top : 0,
 	        width : '75dp',
 	        height : '28dp',
 	        views : arrview,
 	        backgroundColor : 'white',
 	        showPagingControl:false,
-	        currentPage:Ti.App.Properties.getInt('temp'),
-	    });
+	        currentPage:Ti.App.Properties.getInt('on'),
+});
 
 onBtn.addEventListener('singletap', function(){
      		 switchView.scrollToView(1);
-   			 Ti.App.Properties.setInt('temp',1);
-			 diarioTemperatura.opacity=0;
-			 diarioTemperaturaF.opacity=1;
-   		});	
+   		 Ti.App.Properties.setInt('on',1);
+});	
 
 offBtn.addEventListener('singletap', function(){
-   			 switchView.scrollToView(0);
-   			 Ti.App.Properties.setInt('temp',0);
-			 diarioTemperatura.opacity=1;
-			 diarioTemperaturaF.opacity=0;
-   		});
-	    
+   		switchView.scrollToView(0);
+   		Ti.App.Properties.setInt('on',0);
+
+});
+onBtn.addEventListener('change', function(){
+		switchView.scrollToView(1);
+   		 Ti.App.Properties.setInt('on',1);
+});
+offBtn.addEventListener('change', function(){
+   		switchView.scrollToView(0);
+   		Ti.App.Properties.setInt('on',0);
+
+});	    
