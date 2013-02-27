@@ -29,6 +29,10 @@ var switchView = Ti.UI.createScrollableView({
 	        currentPage:Ti.App.Properties.getInt('on'),
 });
 
+/*
+ *listener para cuadno se haga click
+ */
+ 
 onBtn.addEventListener('singletap', function(){
      		 switchView.scrollToView(1);
    		 Ti.App.Properties.setInt('on',1);
@@ -39,6 +43,9 @@ offBtn.addEventListener('singletap', function(){
    		Ti.App.Properties.setInt('on',0);
 
 });
+/*
+ *listener para cuadno se haga swipe
+ */
 onBtn.addEventListener('change', function(){
 		switchView.scrollToView(1);
    		 Ti.App.Properties.setInt('on',1);
